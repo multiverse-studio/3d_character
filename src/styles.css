@@ -1,0 +1,233 @@
+/* ==== Font face Everett ==== */
+@font-face {
+  font-family: "Everett";
+  src: url("/fonts/Everett-Medium.otf") format("opentype");
+  font-weight: 500; /* Medium */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==== GLOBAL UI VARIABLES ==== */
+:root {
+  /* Typography */
+  --ui-font-family: "Everett", sans-serif;
+  --ui-font-weight: 500;
+  --ui-font-size: 12px;         /* dimensione testo globale */
+  --ui-line-height: 1.2;
+  --ui-line-height-desc: 1.35;
+
+  /* Mobile: solo tipografia (dimensioni frecce restano uguali al desktop) */
+  --ui-font-size-mobile: 12px;
+
+  /* Roundness */
+  --ui-radius: 2px;       /* chip */
+  --ui-card-radius: 6px;  /* desc-card */
+
+  /* Nav arrows (desktop & mobile: STESSE DIMENSIONI) */
+  --nav-size: 32px;       /* diametro bottone freccia */
+  --nav-left: 20px;       /* offset da sinistra */
+  --nav-right: 20px;      /* offset da destra */
+  --nav-icon-size: 8px;   /* lato del chevron (px) */
+  --nav-stroke: 1px;      /* spessore chevron + bordo */
+
+  /* Offset globali della freccia all’interno del cerchio */
+  --nav-icon-offset-x: 0px;   /* +dx → destra, -dx → sinistra */
+  --nav-icon-offset-y: 0px;   /* +dy → giù, -dy → su */
+
+  /* Offset specifici per direzione (se “initial”, usa i globali) */
+  /* Preimpostati per compensare l’ottica: sx -1px, dx +1px */
+  --nav-icon-offset-x-left: 1px;
+  --nav-icon-offset-y-left:  0px;
+  --nav-icon-offset-x-right:  -1px;
+  --nav-icon-offset-y-right:  0px;
+}
+
+/* Reset base */
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: var(--ui-font-family);
+  font-weight: var(--ui-font-weight);
+  font-size: var(--ui-font-size);
+  line-height: var(--ui-line-height);
+}
+
+/* ===== UI OVERLAY ===== */
+.ui {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  font-family: var(--ui-font-family);
+  font-weight: var(--ui-font-weight);
+  font-size: var(--ui-font-size);
+  line-height: var(--ui-line-height);
+}
+
+/* Top chips row (desktop) */
+.ui .topbar {
+  position: absolute; top: 20px; left: 24px; right: 24px;
+  display: grid; grid-template-columns: auto auto auto 1fr;
+  gap: 10px; align-items: center;
+}
+
+.chip {
+  pointer-events: auto;
+  padding: 10px 14px;
+  border-radius: var(--ui-radius);
+  font-size: var(--ui-font-size);
+  line-height: var(--ui-line-height);
+  border: 1px solid #e5e5e5;
+  background: #f5f5f5; color: #111;
+  user-select: none;
+}
+.chip--accent { background: #ff164b; color: #fff; border-color: #ff164b; }
+.chip--filled { background: #111; color: #fff; border-color: #111; }
+
+.desc-card {
+  pointer-events: auto;
+  background: #fff; color: #111;
+  border-radius: var(--ui-card-radius);
+  padding: 10px 14px;
+  font-size: var(--ui-font-size);
+  line-height: var(--ui-line-height-desc);
+  border: 1px solid #e9e9e9;
+  overflow: hidden;
+
+  /* Multiline clamp (desktop: 2 righe) */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Fallback per browser senza supporto a line-clamp */
+@supports not (line-clamp: 2) {
+  .desc-card { max-height: calc(var(--ui-line-height-desc) * 1em * 2); }
+}
+
+/* ===== Nav arrows ===== */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--nav-size);
+  height: var(--nav-size);
+  border-radius: 999px; /* cambia in var(--ui-radius) se non le vuoi tonde */
+  border: var(--nav-stroke) solid #d0d0d0;
+  background: #ffffffcc;
+  display: block;
+  color: #111;
+  cursor: pointer; pointer-events: auto; user-select: none;
+  font-size: 0; line-height: 0;  /* evita influssi del glifo testuale */
+}
+/* posizionamento orizzontale */
+.nav-arrow.left  { left: var(--nav-left); }
+.nav-arrow.right { right: var(--nav-right); }
+/* hover */
+.nav-arrow:hover { background: #fff; }
+
+/* Imposta variabili locali per gli offset risolti per direzione */
+.nav-arrow.right {
+  --_chev-ox: var(--nav-icon-offset-x-right, var(--nav-icon-offset-x));
+  --_chev-oy: var(--nav-icon-offset-y-right, var(--nav-icon-offset-y));
+}
+.nav-arrow.left {
+  --_chev-ox: var(--nav-icon-offset-x-left, var(--nav-icon-offset-x));
+  --_chev-oy: var(--nav-icon-offset-y-left, var(--nav-icon-offset-y));
+}
+
+/* Chevron disegnato e centrato al pixel + offset regolabile */
+.nav-arrow::before{
+  content: "";
+  position: absolute;
+  width:  var(--nav-icon-size);
+  height: var(--nav-icon-size);
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: currentColor;
+  border-width: 0 var(--nav-stroke) var(--nav-stroke) 0; /* “V” */
+  transform: translate(calc(-50% + var(--_chev-ox, 0px)),
+                      calc(-50% + var(--_chev-oy, 0px)))
+             rotate(-45deg); /* default = ">" (destra) */
+}
+.nav-arrow.left::before{
+  transform: translate(calc(-50% + var(--_chev-ox, 0px)),
+                      calc(-50% + var(--_chev-oy, 0px)))
+             rotate(135deg); /* "<" (sinistra) */
+}
+
+/* Tooltip help */
+.help {
+  position: absolute; bottom: 20px; left: 24px;
+  font-size: var(--ui-font-size);
+  line-height: var(--ui-line-height);
+  color:#666;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  /* solo tipografia mobile; frecce = stesse dimensioni del desktop */
+  :root { --ui-font-size: var(--ui-font-size-mobile); }
+
+  .ui .topbar {
+    top: 14px; left: 14px; right: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(36px, auto);
+    gap: 8px;
+  }
+
+  #chipTeam { grid-column: 1 / -1; }
+  #chipName { grid-column: 1 / 2; }
+  #chipRole { grid-column: 2 / 3; }
+
+  .desc-card {
+    grid-column: 1 / -1;
+
+    /* Multiline clamp (mobile: 4 righe) */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+
+    white-space: normal;
+    text-overflow: initial;
+    overflow: hidden;
+  }
+}
+
+/* Fallback mobile per browser senza supporto a line-clamp */
+@media (max-width: 768px) {
+  @supports not (line-clamp: 1) {
+    .desc-card { max-height: calc(var(--ui-line-height-desc) * 1em * 4); }
+  }
+}
+
+/* === Desktop: sposta Name/Role a destra, mantiene Team a sinistra === */
+@media (min-width: 769px) {
+  .ui .topbar {
+    grid-template-columns: auto 1fr auto auto !important;
+    grid-template-areas: "team spacer name role";
+  }
+  #chipTeam  { grid-area: team; }
+  #chipName  { grid-area: name; justify-self: end; }
+  #chipRole  { grid-area: role; }
+  .desc-card { grid-area: spacer; }
+}
+
+/* Mobile: neutralizza le aree */
+@media (max-width: 768px) {
+  .ui .topbar { grid-template-areas: none; }
+}
+
+/* forza Everett anche sui <button> (es. OUR TEAM) */
+.ui button,
+#chipTeam,
+.chip {
+  font-family: var(--ui-font-family) !important;
+  font-weight: var(--ui-font-weight) !important;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

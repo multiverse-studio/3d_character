@@ -1,0 +1,38 @@
+[
+  {
+    "id": "m1",
+    "url": "/models/model_1.glb",
+    "label": "EUGENIO PETROSINO",
+    "role": "DESIGN DIRECTOR",
+    "phrases": [
+      "Grande Antico dassssssssssssslla mente risvegliata..."
+    ]
+  },
+  {
+    "id": "m2",
+    "url": "/models/model_2.glb",
+    "label": "LUCA LONGOBARDI",
+    "role": "3D ARTIST",
+    "phrases": [
+      "Ha in dono un amuleto e usa una spada..."
+    ]
+  },
+  {
+    "id": "m3",
+    "url": "/models/model_3.glb",
+    "label": "RUSSO VITTORIO",
+    "role": "ENGINEER",
+    "phrases": [
+      "Dopo gli ingenti danni subiti in battaglia..."
+    ]
+  },
+  {
+    "id": "m4",
+    "url": "/models/model_4.glb",
+    "label": "STEFANO VANACORE",
+    "role": "CG GENERALIST",
+    "phrases": [
+      "…usa spesso mille sfumature."
+    ]
+  }
+]
