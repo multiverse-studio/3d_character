@@ -1,65 +1,44 @@
 [
   {
     "id": "m4",
-    "url": "/models/Eugenio.glb",
+    "url": "/models/compressed/Eugenio.glb",
     "label": "EUGENIO PETROSINO",
-    "role": "DESIGN DIRECTOR",
-    "phrases": [
-      "…usa spesso mille sfumature."
-    ]
+    "role": "CREATIVE DIRECTOR"
   },
   {
     "id": "m4",
-    "url": "/models/Luca.glb",
+    "url": "/models/compressed/Luca.glb",
     "label": "LUCA LONGOBARDI",
-    "role": "SENIOR GRAPHIC DESIGNER",
-    "phrases": [
-      "…usa spesso mille sfumature."
-    ]
+    "role": "SENIOR DESIGNER"
   },
   {
     "id": "m4",
-    "url": "/models/Vittorio.glb",
+    "url": "/models/compressed/Vittorio.glb",
     "label": "VITTORIO RUSSO",
-    "role": "MOTION DESIGNER",
-    "phrases": [
-      "…usa spesso mille sfumature."
-    ]
+    "role": "MOTION DESIGNER"
   },
   {
     "id": "m4",
-    "url": "/models/Ilaria.glb",
+    "url": "/models/compressed/Ilaria.glb",
     "label": "ILARIA IANNONE",
-    "role": "DESIGNER",
-    "phrases": [
-      "…usa spesso mille sfumature."
-    ]
+    "role": "STRATEGIST AND COPYWRITER"
   },
   {
     "id": "m4",
-    "url": "/models/Stefano.glb",
+    "url": "/models/compressed/Stefano.glb",
     "label": "STEFANO VANACORE",
-    "role": "GRAPHIC DESIGNER",
-    "phrases": [
-      "…usa spesso mille sfumature."
-    ]
+    "role": "INTERN DESIGNER"
   },
   {
     "id": "m4",
-    "url": "/models/Gaetano.glb",
+    "url": "/models/compressed/Gaetano.glb",
     "label": "GAETANO PETROSINO",
-    "role": "DESIGNER",
-    "phrases": [
-      "…usa spesso mille sfumature."
-    ]
+    "role": "CHIEF FANANCIAL OFFICER"
   },
   {
     "id": "m4",
-    "url": "/models/Fiorini.glb",
+    "url": "/models/compressed/Fiorini.glb",
     "label": "STEFANO FIORINI",
-    "role": "DESIGNER",
-    "phrases": [
-      "…usa spesso mille sfumature."
-    ]
+    "role": "ADMINISTRATIVE CONSULTANT"
   }
 ]
